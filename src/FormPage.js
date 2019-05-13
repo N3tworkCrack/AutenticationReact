@@ -11,12 +11,7 @@ firebase.initializeApp({
 
 
 class FormPage extends React.Component {
-componentDidMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignedIn: !!user })
-      console.log("user", user)
-    })
-}
+
 
 
 
@@ -24,8 +19,7 @@ auten(e){
  var provider = new firebase.auth.FacebookAuthProvider();
  firebase.auth().signInWithPopup(provider).then(function(result) {
   // This gives you a Facebook Access Token. You can use it to access the Facebook API.
- 
-  // ...
+  
 }).catch(function(error) {
   // Handle Errors here.
  
@@ -44,18 +38,30 @@ google(e){
   // ...
 });
 }
+state = { isSignedIn: false }
+
+componentDidMount = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user })
+      console.log("user", user)
+    })
+}
+
 render(){
 
 return(
-
+  
+  
 
 <MDBView>
+
      <MDBContainer>
       <MDBRow>
       <MDBCol md="9" lg="7" xl="5" className="mx-auto mt-3">
         <MDBCol md="26">
           <MDBCard>
             <MDBCardBody className="mx-4">
+
               <div className="text-center">
                 <h3 className="dark-grey-text mb-5">
                   <strong>Bienvenido </strong>
@@ -144,6 +150,7 @@ return(
       </MDBRow>
     </MDBContainer>
      </MDBView>
+
 )
   }
     }
